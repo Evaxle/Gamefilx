@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="shortcut icon" href="icons/icon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4285f4" />
+  <meta name="robots" content="index, follow">
+  <meta property="og:image" content="https://netflix-1uh.pages.dev/og.jpg"/>
+  <meta name="description"
+    content="Discover and stream your favorite movies and TV shows with NETFLIX KE PITAJI - an open source content search and watch website. Enjoy unlimited access to a vast library of content for free.">
+  <title>GameFlix</title>
+  <link rel="preload stylesheet" href="style.min.css" as="style">
+  <link rel="preload stylesheet" href="center-atom.min.css" as="style">
+  <!-- Google tag (gtag.js) -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-THTQ9GZQ0J">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-THTQ9GZQ0J');
+  </script>
+<!-- Serviceworker code for PWA  -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          console.log('Service worker registered: ', registration.scope);
+        }).catch(function(error) {
+          console.log('Service worker registration failed: ', error);
+        });
+      });
+    }
+  </script>
+  <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64c60eb01734a80012bd61d3&product=video-share-buttons&source=platform" async="async"></script>
+</head>
+<style>
+  #search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#search-input {
+  width: 300px;
+  height: 50px;
+  padding: 0 15px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(to right, #f0f0f0, #ffffff);
+}
+
+#search-input:focus {
+  border: 2px solid #4e9fef;
+  background: #fff;
+  box-shadow: 0 8px 10px rgba(78, 159, 239, 0.3);
+}
+
+#search-button {
+  height: 50px;
+  width: 120px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #4e9fef, #6a5acd);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+#search-button:hover {
+  background: linear-gradient(135deg, #6a5acd, #4e9fef);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 15px rgba(78, 159, 239, 0.4);
+}
+
+#search-button:active {
+  transform: scale(0.95);
+}
+</style>
+<body>
+  <div class="search-container">
+    <input type="search" id="search-input" placeholder="Search any Movie">
+    <button id="search-button">Search</button>
+  </div>
+      <div id="video" class="video">
+      <iframe id="iframe" scrolling="no" src="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <p style="color: rgb(79, 221, 221); font-weight: 500;">In case of any Error or Too Much Buffering click again on
+        your Movie poster down below or just change the Player from the right corner in video player. </p>
+      <!-- ShareThis BEGIN --><div class="sharethis-inline-share-buttons"></div><!-- ShareThis END -->
+      <div id="webSeriesData"></div>
+    </div>
+  <div id="results"></div>
+  <center style="margin-top: 2vh;">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+  <script src="script.min.js"></script>
+</body>
+</html>
